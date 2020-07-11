@@ -19,11 +19,12 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-2016]
         node-version: [8.x, 10.x]
-
-    steps:
+  test:
     needs: build
+    runs-on: ubuntu-latest
+    steps:
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
